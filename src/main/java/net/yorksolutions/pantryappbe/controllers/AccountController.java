@@ -28,6 +28,21 @@ public class AccountController {
     }
 
     //R
+
+    @GetMapping
+    public Iterable<Account> getAllAccounts() {
+        return accountService.getAllAccounts();
+    }
+
+
+    @GetMapping(params = {"email", "password"})
+    public Account getAccountByEmailAndPassword(@RequestParam String email, @RequestParam String password) {
+        try {
+            return accountService.getAccountByEmailAndPassword(email, password);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
     //U
     //D
 }
