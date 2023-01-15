@@ -8,11 +8,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "recipe")
-public class Recipe {
+@Table(name = "ingredient")
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -22,16 +22,17 @@ public class Recipe {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "weight")
+    private Double weight;
 
-    @Column(name = "instructions")
-    private String instructions;
+    @Column(name = "quantity")
+    private Integer quantity;
 
+    @NonNull
+    @Column(name = "metric")
+    private String metric;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
-    private List<Ingredient> ingredient;
-
-
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "recipe_id", referencedColumnName = "id")
+    private Recipe recipes;
 }
