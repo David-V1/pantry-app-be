@@ -31,6 +31,8 @@ public class IngredientService {
             ingredient.setMetric(ingredientDTO.metric);
             ingredient.setRecipes(recipeOptional.get()); //TODO: Check this
             ingredientRepository.save(ingredient);
+            //TODO: Check this
+            //recipeRepository.save(recipeOptional.get());
         }
 
         // Read
