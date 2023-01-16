@@ -12,7 +12,8 @@ public class Item {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "image")
+    @Lob
+    @Column(name = "image", length = 10000)
     private String image;
 
     @Column(name = "weight")
