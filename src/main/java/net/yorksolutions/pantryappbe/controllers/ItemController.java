@@ -47,6 +47,15 @@ public class ItemController {
     }
 
     // Update
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    public void updateItem(@PathVariable Long id, @RequestBody Item item) {
+        try {
+            itemService.updateItem(id, item);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
     // Delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
