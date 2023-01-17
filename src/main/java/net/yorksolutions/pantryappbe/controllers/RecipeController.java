@@ -44,6 +44,15 @@ public class RecipeController {
         }
     }
     // Update
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public void updateRecipe(@PathVariable Long id, @RequestBody RecipeDTO recipeDTO) {
+        try {
+            recipeService.updateRecipe(id, recipeDTO);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // Delete
     @ResponseStatus(HttpStatus.NO_CONTENT)

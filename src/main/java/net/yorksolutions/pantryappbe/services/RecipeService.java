@@ -43,6 +43,17 @@ public class RecipeService {
         throw new Exception("Recipe not found");
     }
     //Update
+    public void updateRecipe(Long id, RecipeDTO recipeDTO) throws Exception {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+        if (recipeOptional.isEmpty()) {
+            throw new Exception("Recipe not found");
+        }
+        Recipe recipe = recipeOptional.get();
+        recipe.setName(recipeDTO.name);
+        recipe.setImage(recipeDTO.image);
+        recipe.setInstructions(recipeDTO.instructions);
+        recipeRepository.save(recipe);
+    }
     //Delete
     public void deleteRecipeById(Long id) throws Exception{
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
