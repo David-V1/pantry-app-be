@@ -25,7 +25,8 @@ public class Recipe {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "instructions")
+    @Lob
+    @Column(name = "instructions", length = 10000)
     private String instructions;
 
 
