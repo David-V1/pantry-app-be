@@ -60,6 +60,18 @@ public class IngredientService {
         }
 
         // Update
+    public void updateIngredient( Long id, IngredientDTO ingredientDTO) throws Exception {
+        Optional<Ingredient> ingredientOptional = ingredientRepository.findById(id);
+        if (ingredientOptional.isEmpty())
+            throw new Exception("Ingredient not found");
+        Ingredient ingredient = ingredientOptional.get();
+        ingredient.setName(ingredientDTO.name);
+        ingredient.setWeight(ingredientDTO.weight);
+        ingredient.setQuantity(ingredientDTO.quantity);
+        ingredient.setMetric(ingredientDTO.metric);
+        ingredientRepository.save(ingredient);
+
+    }
 
         // Delete
         public void deleteIngredientById(Long id) throws Exception {

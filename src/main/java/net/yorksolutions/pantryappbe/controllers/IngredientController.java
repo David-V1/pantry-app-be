@@ -51,6 +51,15 @@ public class IngredientController {
         }
     }
     // Update
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public void updateIngredient(@PathVariable Long id, @RequestBody IngredientDTO ingredient) {
+        try {
+            ingredientService.updateIngredient(id, ingredient);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
     // Delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
