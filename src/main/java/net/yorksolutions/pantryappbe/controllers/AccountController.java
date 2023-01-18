@@ -18,6 +18,7 @@ public class AccountController {
     }
 
     //C
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public void createAccount(@RequestBody AccountDTO account) {
         try {
@@ -28,7 +29,7 @@ public class AccountController {
     }
 
     //R
-
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public Iterable<Account> getAllAccounts() {
         return accountService.getAllAccounts();
@@ -44,5 +45,15 @@ public class AccountController {
         }
     }
     //U
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public void updateAccount(@PathVariable Long id, @RequestBody AccountDTO account) {
+        try {
+            accountService.updateAccount(id, account);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
     //D
 }

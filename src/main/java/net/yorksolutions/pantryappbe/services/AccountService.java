@@ -41,5 +41,18 @@ public class AccountService {
 
     }
     //crUd
+    public void updateAccount(Long id, AccountDTO account) throws Exception {
+        Optional<Account> accountOptional = accountRepository.findById(id);
+        if (accountOptional.isEmpty()) {
+            throw new Exception("Account does not exist");
+        }
+
+        Account newAccount = accountOptional.get();
+        newAccount.setEmail(account.email);
+        newAccount.setPassword(account.password);
+        newAccount.setFamilyName(account.familyName);
+
+        accountRepository.save(newAccount);
+    }
     //cruD
 }
