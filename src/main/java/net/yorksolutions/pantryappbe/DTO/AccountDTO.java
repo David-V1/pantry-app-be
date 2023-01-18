@@ -1,5 +1,6 @@
 package net.yorksolutions.pantryappbe.DTO;
 
+import java.util.List;
 import java.util.Optional;
 
 public class AccountDTO {
@@ -8,4 +9,6 @@ public class AccountDTO {
     public String email;
     public String password;
     public String familyName;
+
+    public List<RecipeDTO> recipes;
 }

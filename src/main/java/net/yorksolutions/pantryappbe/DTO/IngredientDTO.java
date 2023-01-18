@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class IngredientDTO {
 
-    public Long id;
+    public Optional<Long> id;
 
     public String name;
 

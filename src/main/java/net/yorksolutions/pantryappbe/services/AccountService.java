@@ -36,13 +36,8 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-    public Account getAccountByEmailAndPassword(String email, String password) throws Exception {
-        Optional<Account> accountOptional = accountRepository.getAccountByEmailAndPassword(email, password);
-        if (accountOptional.isEmpty()) {
-            throw new Exception("Account does not exist");
-        }
-        return accountOptional.get();
-        //TODO: Add password check
+    public Account getAccountByEmailAndPassword(String email, String password){
+        return accountRepository.getAccountByEmailAndPassword(email, password).orElse(null);
 
     }
     //crUd

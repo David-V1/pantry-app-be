@@ -34,5 +34,8 @@ public class Recipe {
     @OneToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
     private List<Ingredient> ingredient;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
 }
