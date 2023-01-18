@@ -18,10 +18,10 @@ public class RecipeController {
 
     // Create
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public void createRecipe(@RequestBody RecipeDTO recipeDTO) {
+    @PostMapping("/{id}")
+    public void createRecipe(@PathVariable Long id, @RequestBody RecipeDTO recipeDTO) {
        try {
-           recipeService.createRecipe(recipeDTO);
+           recipeService.createRecipe(id, recipeDTO);
        } catch (Exception e) {
            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
        }

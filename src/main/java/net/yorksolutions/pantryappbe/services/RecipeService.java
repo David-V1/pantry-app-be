@@ -2,7 +2,9 @@ package net.yorksolutions.pantryappbe.services;
 
 import lombok.AllArgsConstructor;
 import net.yorksolutions.pantryappbe.DTO.RecipeDTO;
+import net.yorksolutions.pantryappbe.models.Account;
 import net.yorksolutions.pantryappbe.models.Recipe;
+import net.yorksolutions.pantryappbe.repositories.AccountRepository;
 import net.yorksolutions.pantryappbe.repositories.RecipeRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,18 +16,20 @@ import java.util.Optional;
 @Service
 public class RecipeService {
     RecipeRepository recipeRepository;
+    AccountRepository accountRepository;
 
     //Create
-    public void createRecipe(RecipeDTO recipe) throws Exception{
-        Optional<Recipe> recipeOptional = recipeRepository.findByName(recipe.name);
-        if (recipeOptional.isPresent()) {
-            throw new Exception("Recipe already exists");
-        }
+    public void createRecipe(Long id, RecipeDTO recipe) throws Exception{
+        Optional<Account> account = accountRepository.findById(id);
+
+        if (account.isEmpty())
+            throw new Exception("Account not found");
 
         Recipe recipeToSave = new Recipe();
         recipeToSave.setName(recipe.name);
         recipeToSave.setImage(recipe.image);
         recipeToSave.setInstructions(recipe.instructions);
+        recipeToSave.setAccount(account.get());
 
         recipeRepository.save(recipeToSave);
 
