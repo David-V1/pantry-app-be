@@ -20,13 +20,17 @@ public class ItemService {
         String defaultImage = "https://via.placeholder.com/150\n" +
                 "\n" +
                 "C/O https://placeholder.com/";
+
         if (item == null)
             throw new Exception("Item cannot be null");
+
         Item newItem = new Item();
-        newItem.setName(item.getName());
+
         if (item.getImage() == null || item.getImage().equals("")){
             item.setImage(defaultImage);
         }
+
+        newItem.setName(item.getName());
         newItem.setImage(item.getImage());
         newItem.setImage(item.getImage());
         newItem.setWeight(item.getWeight());
@@ -72,6 +76,7 @@ public class ItemService {
 
         itemToUpdate.setMetric(item.getMetric());
         itemToUpdate.setQuantity(item.getQuantity());
+        itemToUpdate.setWeight(item.getWeight());
         itemToUpdate.setCalories(item.getCalories());
         itemToUpdate.setCategory(item.getCategory());
 
