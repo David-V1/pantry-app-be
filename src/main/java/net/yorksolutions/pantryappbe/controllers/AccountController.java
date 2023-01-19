@@ -56,4 +56,13 @@ public class AccountController {
     }
 
     //D
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id}")
+    public void deleteAccount(@PathVariable Long id) {
+        try {
+            accountService.deleteAccount(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package net.yorksolutions.pantryappbe.controllers;
 
-import lombok.AllArgsConstructor;
 import net.yorksolutions.pantryappbe.DTO.IngredientDTO;
+import lombok.AllArgsConstructor;
 import net.yorksolutions.pantryappbe.models.Ingredient;
 import net.yorksolutions.pantryappbe.services.IngredientService;
 import org.springframework.http.HttpStatus;

@@ -4,7 +4,6 @@ import net.yorksolutions.pantryappbe.models.Item;
 import net.yorksolutions.pantryappbe.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
