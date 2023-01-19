@@ -6,7 +6,6 @@ import net.yorksolutions.pantryappbe.models.Account;
 import net.yorksolutions.pantryappbe.models.Recipe;
 import net.yorksolutions.pantryappbe.repositories.AccountRepository;
 import net.yorksolutions.pantryappbe.repositories.RecipeRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

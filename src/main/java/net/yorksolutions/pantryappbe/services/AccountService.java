@@ -55,4 +55,11 @@ public class AccountService {
         accountRepository.save(newAccount);
     }
     //cruD
+    public void deleteAccount(Long id) throws Exception{
+        Optional<Account> accountOptional = accountRepository.findById(id);
+        if (accountOptional.isEmpty()) {
+            throw new Exception("Account does not exist");
+        }
+        accountRepository.deleteById(id);
+    }
 }
