@@ -1,5 +1,6 @@
 package net.yorksolutions.pantryappbe.controllers;
 
+import net.yorksolutions.pantryappbe.DTO.ItemDTO;
 import net.yorksolutions.pantryappbe.models.Item;
 import net.yorksolutions.pantryappbe.services.ItemService;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,10 @@ public class ItemController {
 
     // Create
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public void createItem(@RequestBody Item item){
+    @PostMapping("/{accountId}")
+    public void createItem(@PathVariable Long accountId, @RequestBody ItemDTO item) {
         try {
-            itemService.createItem(item);
+            itemService.createItem(accountId, item);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED);
         }

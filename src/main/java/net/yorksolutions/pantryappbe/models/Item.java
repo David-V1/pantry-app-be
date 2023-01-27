@@ -31,7 +31,11 @@ public class Item {
     @Column(name = "category")
     private String category;
 
-    public Item(Long id, String name, String image, Double weight, String metric, Integer quantity, Integer calories, String category) {
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
+
+    public Item(Long id, String name, String image, Double weight, String metric, Integer quantity, Integer calories, String category, Account account) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -40,6 +44,7 @@ public class Item {
         this.quantity = quantity;
         this.calories = calories;
         this.category = category;
+        this.account = account;
     }
 
     public Item() {}
@@ -102,5 +107,13 @@ public class Item {
 
     public void setMetric(String metric) {
         this.metric = metric;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

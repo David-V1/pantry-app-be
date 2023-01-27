@@ -11,4 +11,6 @@ public class AccountDTO {
     public String familyName;
 
     public List<RecipeDTO> recipes;
+
+    public List<ItemDTO> items;
 }

@@ -26,12 +26,17 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Recipe> recipe;
 
-    public Account(Long id, String email, String password, String familyName, List<Recipe> recipe) {
+    @JsonIgnore
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Item> item;
+
+    public Account(Long id, String email, String password, String familyName, List<Recipe> recipe, List<Item> item) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.familyName = familyName;
         this.recipe = recipe;
+        this.item = item;
     }
 
     public Account() {}
@@ -70,5 +75,13 @@ public class Account {
 
     public void setRecipe(List<Recipe> recipe) {
         this.recipe = recipe;
+    }
+
+    public List<Item> getItem() {
+        return item;
+    }
+
+    public void setItem(List<Item> item) {
+        this.item = item;
     }
 }
