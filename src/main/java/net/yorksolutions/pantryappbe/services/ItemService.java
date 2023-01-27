@@ -17,16 +17,22 @@ public class ItemService {
 
     // Create
     public void createItem(Item item) throws Exception {
-        String defaultImage = "https://via.placeholder.com/150\n" +
-                "\n" +
-                "C/O https://placeholder.com/";
+        String defaultImage = "https://www.jpgteam.com/wp-content/uploads/2017/06/placeholder-4-500x300.png";
 
         if (item == null)
             throw new Exception("Item cannot be null");
 
         Item newItem = new Item();
 
-        if (item.getImage() == null || item.getImage().equals("")){
+        if (item.getImage().equals("") && item.getCategory().equals("Dairy & Alternatives")) {
+           item.setImage("https://www.pngarts.com/files/1/Dairy-PNG-Image-Background.png");
+        }
+
+        if (item.getImage().equals("") && item.getCategory().equals("Fruits")) {
+           item.setImage("https://www.pngkey.com/png/full/4-48879_fruit-png-fruits-png.png");
+        }
+
+        if (item.getImage().equals("")) {
             item.setImage(defaultImage);
         }
 
@@ -56,9 +62,7 @@ public class ItemService {
 
     // Update
     public void updateItem(Long id, Item item) throws Exception {
-        String defaultImage = "https://via.placeholder.com/150\n" +
-                "\n" +
-                "C/O https://placeholder.com/";
+        String defaultImage = "https://www.jpgteam.com/wp-content/uploads/2017/06/placeholder-4-500x300.png";
 
         Optional<Item> itemOptional = itemRepository.findById(id);
         if (itemOptional.isEmpty())
