@@ -1,6 +1,9 @@
 package net.yorksolutions.pantryappbe.services;
 
+import net.yorksolutions.pantryappbe.DTO.ItemDTO;
+import net.yorksolutions.pantryappbe.models.Account;
 import net.yorksolutions.pantryappbe.models.Item;
+import net.yorksolutions.pantryappbe.repositories.AccountRepository;
 import net.yorksolutions.pantryappbe.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +13,20 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final AccountRepository accountRepository;
 
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, AccountRepository accountRepository) {
         this.itemRepository = itemRepository;
+        this.accountRepository = accountRepository;
     }
 
     // Create
-    public void createItem(Item item) throws Exception {
+    public void createItem(Long accountId, ItemDTO item) throws Exception {
+        Optional<Account> accountOptional = accountRepository.findById(accountId);
+        if (accountOptional.isEmpty()) {
+            throw new Exception("Account not found");
+        }
+        Account account = accountOptional.get();
         String defaultImage = "https://www.jpgteam.com/wp-content/uploads/2017/06/placeholder-4-500x300.png";
 
         if (item == null)
@@ -24,27 +34,28 @@ public class ItemService {
 
         Item newItem = new Item();
 
-        if (item.getImage().equals("") && item.getCategory().equals("Dairy & Alternatives")) {
-           item.setImage("https://www.pngarts.com/files/1/Dairy-PNG-Image-Background.png");
+        if (item.image.equals("") && item.image.equals("Dairy & Alternatives")) {
+            newItem.setImage("https://www.pngarts.com/files/1/Dairy-PNG-Image-Background.png");
         }
 
-        if (item.getImage().equals("") && item.getCategory().equals("Fruits")) {
-           item.setImage("https://www.pngkey.com/png/full/4-48879_fruit-png-fruits-png.png");
+        if (item.image.equals("") && item.category.equals("Fruits")) {
+            newItem.setImage("https://www.pngkey.com/png/full/4-48879_fruit-png-fruits-png.png");
         }
 
-        if (item.getImage().equals("")) {
-            item.setImage(defaultImage);
+        if (item.image.equals("")) {
+            newItem.setImage(defaultImage);
         }
 
-        newItem.setName(item.getName());
-        newItem.setImage(item.getImage());
-        newItem.setImage(item.getImage());
-        newItem.setWeight(item.getWeight());
-        newItem.setMetric(item.getMetric());
-        newItem.setQuantity(item.getQuantity());
-        newItem.setCalories(item.getCalories());
-        newItem.setCategory(item.getCategory());
-        itemRepository.save(item);
+        newItem.setName(item.name);
+        newItem.setImage(item.image);
+        //newItem.setImage(item.getImage());
+        newItem.setWeight(item.weight);
+        newItem.setMetric(item.metric);
+        newItem.setQuantity(item.quantity);
+        newItem.setCalories(item.calories);
+        newItem.setCategory(item.category);
+        newItem.setAccount(account);
+        itemRepository.save(newItem);
     }
     // Read
     public Iterable<Item> getAllItems() {
