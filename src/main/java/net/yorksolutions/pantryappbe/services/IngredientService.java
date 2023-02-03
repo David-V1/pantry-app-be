@@ -32,7 +32,6 @@ public class IngredientService {
             ingredient.setRecipes(recipeOptional.get()); //TODO: Check this
             ingredientRepository.save(ingredient);
             //TODO: Check this
-            //recipeRepository.save(recipeOptional.get());
         }
 
         // Read
@@ -70,7 +69,6 @@ public class IngredientService {
         ingredient.setQuantity(ingredientDTO.quantity);
         ingredient.setMetric(ingredientDTO.metric);
         ingredientRepository.save(ingredient);
-
     }
 
         // Delete

@@ -1,10 +1,8 @@
 package net.yorksolutions.pantryappbe.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Getter
 @Setter

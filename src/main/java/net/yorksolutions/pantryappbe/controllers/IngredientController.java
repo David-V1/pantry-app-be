@@ -23,7 +23,6 @@ public class IngredientController {
         ingredientService.createIngredient(ingredientDTO, recipeId);
     }
 
-
     // Read
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
@@ -50,6 +49,7 @@ public class IngredientController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Recipe not found", e);
         }
     }
+
     // Update
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
@@ -60,6 +60,7 @@ public class IngredientController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
     // Delete
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
