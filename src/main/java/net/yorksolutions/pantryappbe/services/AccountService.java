@@ -36,8 +36,13 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-    public Account getAccountByEmailAndPassword(String email, String password){
-        return accountRepository.getAccountByEmailAndPassword(email, password).orElse(null);
+    public Account getAccountByEmailAndPassword(String email, String password) throws Exception {
+        Optional<Account> accountOptional = accountRepository.getAccountByEmailAndPassword(email, password);
+        if (accountOptional.isPresent()) {
+            return accountOptional.get();
+        } else {
+            throw new Exception("Account not found");
+        }
 
     }
     //crUd
